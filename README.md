@@ -9,7 +9,7 @@
 
 <h3>Проекты</h3>
 
-<ul><li>Ссылка на проект: https://skrodel.atlassian.net/l/cp/CFJrYToh</li></ul>
+<ul><li>Ссылка на проект: https://drive.google.com/drive/folders/1ad3safM5sCFknAxMflhkyTf6NSHETDoG?usp=sharing</li></ul>
 
 <h3>Контактная информация</h3>
 <ul>
