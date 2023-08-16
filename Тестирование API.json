@@ -1,0 +1,1615 @@
+{
+	"info": {
+		"_postman_id": "c7e1d513-1655-4569-8c4d-49017e997c40",
+		"name": "Курсовая работа №2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26940512",
+		"_collection_link": "https://www.postman.com/skrodel/workspace/test-api/collection/26940512-c7e1d513-1655-4569-8c4d-49017e997c40?action=share&creator=26940512&source=collection_link"
+	},
+	"item": [
+		{
+			"name": "Добавление нажатием на плюс",
+			"item": [
+				{
+					"name": "Получение расписания",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "token_global={{token_global}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"from\": \"2023-06-12T00:00:00+03:00\",\r\n    \"till\": \"2023-06-19T00:00:00+03:00\",\r\n    \"onlyTypes\": []\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}events",
+							"host": [
+								"{{baseUrl}}events"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Добавление события",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var key = \"PersonalId\"\r",
+									"var value = pm.response.json().data.payload.id\r",
+									"pm.collectionVariables.set(key, value)\r",
+									"\r",
+									"var key = \"startAt\"\r",
+									"var value = pm.response.json().data.startAt\r",
+									"pm.collectionVariables.set(key, value)\r",
+									"\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "token_global={{token_global}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"backgroundColor\": \"#EBFDF2\",\r\n    \"color\": \"#43B658\",\r\n    \"description\": \"Курсовая\",\r\n    \"title\": \"Работа Сишненко\",\r\n    \"startAt\": \"2023-06-15T11:00:00+03:00\",\r\n    \"endAt\": \"2023-06-15T11:30:00+03:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}createPersonal",
+							"host": [
+								"{{baseUrl}}createPersonal"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Удаление события",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "token_global={{token_global}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": {{PersonalId}},\r\n    \"startAt\": \"{{startAt}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}removePersonal",
+							"host": [
+								"{{baseUrl}}removePersonal"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Добавление нажатием на слот",
+			"item": [
+				{
+					"name": "Получение расписания",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "token_global={{token_global}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"from\": \"2023-06-12T00:00:00+03:00\",\r\n    \"till\": \"2023-06-19T00:00:00+03:00\",\r\n    \"onlyTypes\": []\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}events",
+							"host": [
+								"{{baseUrl}}events"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Добавление события",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var key = \"PersonalId\"\r",
+									"var value = pm.response.json().data.payload.id\r",
+									"pm.collectionVariables.set(key, value)\r",
+									"\r",
+									"var key = \"startAt\"\r",
+									"var value = pm.response.json().data.startAt\r",
+									"pm.collectionVariables.set(key, value)\r",
+									"\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "token_global={{token_global}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"backgroundColor\": \"#EBFDF2\",\r\n    \"color\": \"#43B658\",\r\n    \"description\": \"Курсовая\",\r\n    \"title\": \"Сишненко\",\r\n    \"startAt\": \"2023-06-18T13:30:00+03:00\",\r\n    \"endAt\": \"2023-06-18T14:00:00+03:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}createPersonal",
+							"host": [
+								"{{baseUrl}}createPersonal"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Удаление события",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "token_global={{token_global}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": {{PersonalId}},\r\n    \"startAt\": \"{{startAt}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}removePersonal",
+							"host": [
+								"{{baseUrl}}removePersonal"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Добавление события прошедшей датой",
+			"item": [
+				{
+					"name": "Получение расписания",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "token_global={{token_global}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"from\": \"2023-06-05T00:00:00+03:00\",\r\n    \"till\": \"2023-06-12T00:00:00+03:00\",\r\n    \"onlyTypes\": []\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}events",
+							"host": [
+								"{{baseUrl}}events"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Добавление события",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var key = \"PersonalId\"\r",
+									"var value = pm.response.json().data.payload.id\r",
+									"pm.collectionVariables.set(key, value)\r",
+									"\r",
+									"var key = \"startAt\"\r",
+									"var value = pm.response.json().data.startAt\r",
+									"pm.collectionVariables.set(key, value)\r",
+									"\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "token_global={{token_global}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"backgroundColor\": \"#EBFDF2\",\r\n    \"color\": \"#43B658\",\r\n    \"description\": \"Курсовая\",\r\n    \"title\": \"Сишненко\",\r\n    \"startAt\": \"2023-06-06T01:00:00+03:00\",\r\n    \"endAt\": \"2023-06-06T22:00:00+03:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}createPersonal",
+							"host": [
+								"{{baseUrl}}createPersonal"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Удаление события",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "token_global={{token_global}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": {{PersonalId}},\r\n    \"startAt\": \"{{startAt}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}removePersonal",
+							"host": [
+								"{{baseUrl}}removePersonal"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Добавление двух событий в один слот",
+			"item": [
+				{
+					"name": "Получение расписания",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "token_global={{token_global}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"from\": \"2023-06-12T00:00:00+03:00\",\r\n    \"till\": \"2023-06-19T00:00:00+03:00\",\r\n    \"onlyTypes\": []\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}events",
+							"host": [
+								"{{baseUrl}}events"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Добавление события",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var key = \"PersonalId\"\r",
+									"var value = pm.response.json().data.payload.id\r",
+									"pm.collectionVariables.set(key, value)\r",
+									"\r",
+									"var key = \"startAt\"\r",
+									"var value = pm.response.json().data.startAt\r",
+									"pm.collectionVariables.set(key, value)\r",
+									"\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "token_global={{token_global}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"backgroundColor\": \"#EBFDF2\",\r\n    \"color\": \"#43B658\",\r\n    \"description\": \"Курсовая Работа №2\",\r\n    \"title\": \"Сишненко\",\r\n    \"startAt\": \"2023-06-15T05:00:00+03:00\",\r\n    \"endAt\": \"2023-06-15T06:00:00+03:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}createPersonal",
+							"host": [
+								"{{baseUrl}}createPersonal"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Добавление события",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var key = \"PersonalId2\"\r",
+									"var value = pm.response.json().data.payload.id\r",
+									"pm.collectionVariables.set(key, value)\r",
+									"\r",
+									"var key = \"startAt2\"\r",
+									"var value = pm.response.json().data.startAt\r",
+									"pm.collectionVariables.set(key, value)\r",
+									"\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "token_global={{token_global}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"backgroundColor\": \"#EBFDF2\",\r\n    \"color\": \"#D478F1\",\r\n    \"description\": \"Отвезти сына в сад\",\r\n    \"title\": \"Сишненко\",\r\n    \"startAt\": \"2023-06-15T05:00:00+03:00\",\r\n    \"endAt\": \"2023-06-15T06:30:00+03:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}createPersonal",
+							"host": [
+								"{{baseUrl}}createPersonal"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Удаление 1 события",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "token_global={{token_global}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": {{PersonalId}},\r\n    \"startAt\": \"{{startAt}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}removePersonal",
+							"host": [
+								"{{baseUrl}}removePersonal"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Удаление 2 события",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "token_global={{token_global}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": {{PersonalId2}},\r\n    \"startAt\": \"{{startAt2}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}removePersonal",
+							"host": [
+								"{{baseUrl}}removePersonal"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Добавление события с невалидными данными",
+			"item": [
+				{
+					"name": "Получение расписания",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "token_global={{token_global}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"from\": \"2023-05-15T00:00:00+03:00\",\r\n    \"till\": \"2023-05-22T00:00:00+03:00\",\r\n    \"onlyTypes\": []\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}events",
+							"host": [
+								"{{baseUrl}}events"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Добавление события",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "token_global={{token_global}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"backgroundColor\": \"#EBFDF2\",\r\n    \"color\": \"#FF4500\",\r\n    \"description\": \"Курсовая\",\r\n    \"title\": \"Вапролдонавапеквпрнеапрорнеапрогнеапрорпапр\",\r\n    \"startAt\": \"2023-05-19T14:00:00+03:00\",\r\n    \"endAt\": \"2023-05-19T13:00:00+03:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}createPersonal",
+							"host": [
+								"{{baseUrl}}createPersonal"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Редактирование всех параметров в событиях",
+			"item": [
+				{
+					"name": "Получение расписания",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "token_global={{token_global}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"from\": \"2023-06-12T00:00:00+03:00\",\r\n    \"till\": \"2023-06-19T00:00:00+03:00\",\r\n    \"onlyTypes\": []\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}events",
+							"host": [
+								"{{baseUrl}}events"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Добавление события",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var key = \"PersonalId\"\r",
+									"var value = pm.response.json().data.payload.id\r",
+									"pm.collectionVariables.set(key, value)\r",
+									"\r",
+									"var key = \"startAt\"\r",
+									"var value = pm.response.json().data.startAt\r",
+									"pm.collectionVariables.set(key, value)\r",
+									"\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "token_global={{token_global}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"backgroundColor\": \"#EBFDF2\",\r\n    \"color\": \"#43B658\",\r\n    \"description\": \"Курсовая Работа №2\",\r\n    \"title\": \"Сишненко\",\r\n    \"startAt\": \"2023-06-17T14:00:00+03:00\",\r\n    \"endAt\": \"2023-06-17T15:00:00+03:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}createPersonal",
+							"host": [
+								"{{baseUrl}}createPersonal"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Редактирование события",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var key = \"PersonalId\"\r",
+									"var value = pm.response.json().data.payload.id\r",
+									"pm.collectionVariables.set(key, value)\r",
+									"\r",
+									"var key = \"startAt\"\r",
+									"var value = pm.response.json().data.startAt\r",
+									"pm.collectionVariables.set(key, value)\r",
+									"\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "token_global={{token_global}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"backgroundColor\": \"#F9EBFF\",\r\n    \"color\": \"#D478F1\",\r\n    \"description\": \"Работа курсовая №2\",\r\n    \"title\": \"курсовая сиш\",\r\n    \"startAt\": \"2023-06-16T15:00:00+03:00\",\r\n    \"endAt\": \"2023-06-16T15:30:00+03:00\",\r\n    \"id\": {{PersonalId}},\r\n    \"oldStartAt\": \"{{startAt}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}updatePersonal",
+							"host": [
+								"{{baseUrl}}updatePersonal"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Удаление события",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "token_global={{token_global}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": {{PersonalId}},\r\n    \"startAt\": \"{{startAt}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}removePersonal",
+							"host": [
+								"{{baseUrl}}removePersonal"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Редактирование с валидных на невалидные данные",
+			"item": [
+				{
+					"name": "Получение расписания",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "token_global={{token_global}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"from\": \"2023-06-12T00:00:00+03:00\",\r\n    \"till\": \"2023-06-19T00:00:00+03:00\",\r\n    \"onlyTypes\": []\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}events",
+							"host": [
+								"{{baseUrl}}events"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Добавление события",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var key = \"PersonalId\"\r",
+									"var value = pm.response.json().data.payload.id\r",
+									"pm.collectionVariables.set(key, value)\r",
+									"\r",
+									"var key = \"startAt\"\r",
+									"var value = pm.response.json().data.startAt\r",
+									"pm.collectionVariables.set(key, value)\r",
+									"\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "token_global={{token_global}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"backgroundColor\": \"#EBFDF2\",\r\n    \"color\": \"#43B658\",\r\n    \"description\": \"Курсовая Работа\",\r\n    \"title\": \"Сишненко\",\r\n    \"startAt\": \"2023-06-17T14:00:00+03:00\",\r\n    \"endAt\": \"2023-06-17T15:00:00+03:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}createPersonal",
+							"host": [
+								"{{baseUrl}}createPersonal"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Редактирование события",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "token_global={{token_global}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"backgroundColor\": \"#F9EBFF\",\r\n    \"color\": \"#8B4513\",\r\n    \"description\": \"Работа курсовая №2\",\r\n    \"title\": \"    \",\r\n    \"startAt\": \"2023-06-18T15:40:00+03:00\",\r\n    \"endAt\": \"2023-06-18T15:30:00+03:00\",\r\n    \"id\": {{PersonalId}},\r\n    \"oldStartAt\": \"{{startAt}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}updatePersonal",
+							"host": [
+								"{{baseUrl}}updatePersonal"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Удаление события",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "token_global={{token_global}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": {{PersonalId}},\r\n    \"startAt\": \"{{startAt}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}removePersonal",
+							"host": [
+								"{{baseUrl}}removePersonal"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Редактирование даты с прошедшей на будущую",
+			"item": [
+				{
+					"name": "Получение расписания",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "token_global={{token_global}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"from\": \"2023-04-10T00:00:00+03:00\",\r\n    \"till\": \"2023-04-17T00:00:00+03:00\",\r\n    \"onlyTypes\": []\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}events",
+							"host": [
+								"{{baseUrl}}events"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Добавление события",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var key = \"PersonalId\"\r",
+									"var value = pm.response.json().data.payload.id\r",
+									"pm.collectionVariables.set(key, value)\r",
+									"\r",
+									"var key = \"startAt\"\r",
+									"var value = pm.response.json().data.startAt\r",
+									"pm.collectionVariables.set(key, value)\r",
+									"\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "token_global={{token_global}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"backgroundColor\": \"#EBFDF2\",\r\n    \"color\": \"#43B658\",\r\n    \"description\": \"Курсовая Работа\",\r\n    \"title\": \"Сишненко\",\r\n    \"startAt\": \"2023-04-10T02:00:00+03:00\",\r\n    \"endAt\": \"2023-04-10T03:00:00+03:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}createPersonal",
+							"host": [
+								"{{baseUrl}}createPersonal"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Редактирование события",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var key = \"PersonalId\"\r",
+									"var value = pm.response.json().data.payload.id\r",
+									"pm.collectionVariables.set(key, value)\r",
+									"\r",
+									"var key = \"startAt\"\r",
+									"var value = pm.response.json().data.startAt\r",
+									"pm.collectionVariables.set(key, value)\r",
+									"\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "token_global={{token_global}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"backgroundColor\": \"#F9EBFF\",\r\n    \"color\": \"#43B658\",\r\n    \"description\": \"Работа курсовая №2\",\r\n    \"title\": \"Сишненко\",\r\n    \"startAt\": \"2023-11-22T10:00:00+03:00\",\r\n    \"endAt\": \"2023-11-22T18:00:00+03:00\",\r\n    \"id\": {{PersonalId}},\r\n    \"oldStartAt\": \"{{startAt}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}updatePersonal",
+							"host": [
+								"{{baseUrl}}updatePersonal"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Удаление события",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "token_global={{token_global}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": {{PersonalId}},\r\n    \"startAt\": \"{{startAt}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}removePersonal",
+							"host": [
+								"{{baseUrl}}removePersonal"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Удаление личного события с валидными данными",
+			"item": [
+				{
+					"name": "Получение расписания",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "token_global={{token_global}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"from\": \"2023-06-12T00:00:00+03:00\",\r\n    \"till\": \"2023-06-19T00:00:00+03:00\",\r\n    \"onlyTypes\": []\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}events",
+							"host": [
+								"{{baseUrl}}events"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Добавление событий",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var key = \"PersonalId\"\r",
+									"var value = pm.response.json().data.payload.id\r",
+									"pm.collectionVariables.set(key, value)\r",
+									"\r",
+									"var key = \"startAt\"\r",
+									"var value = pm.response.json().data.startAt\r",
+									"pm.collectionVariables.set(key, value)\r",
+									"\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "token_global={{token_global}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"backgroundColor\": \"#EBFDF2\",\r\n    \"color\": \"#43B658\",\r\n    \"description\": \"Курсовая\",\r\n    \"title\": \"Работа Сишненко\",\r\n    \"startAt\": \"2023-06-15T11:00:00+03:00\",\r\n    \"endAt\": \"2023-06-15T11:30:00+03:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}createPersonal",
+							"host": [
+								"{{baseUrl}}createPersonal"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Удаление события",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "token_global={{token_global}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": {{PersonalId}},\r\n    \"startAt\": \"{{startAt}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}removePersonal",
+							"host": [
+								"{{baseUrl}}removePersonal"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Удаление события только с пробелами в названии",
+			"item": [
+				{
+					"name": "Получение расписания",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "token_global={{token_global}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"from\": \"2023-06-12T00:00:00+03:00\",\r\n    \"till\": \"2023-06-19T00:00:00+03:00\",\r\n    \"onlyTypes\": []\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}events",
+							"host": [
+								"{{baseUrl}}events"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Добавление события",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var key = \"PersonalId\"\r",
+									"var value = pm.response.json().data.payload.id\r",
+									"pm.collectionVariables.set(key, value)\r",
+									"\r",
+									"var key = \"startAt\"\r",
+									"var value = pm.response.json().data.startAt\r",
+									"pm.collectionVariables.set(key, value)\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "token_global={{token_global}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"backgroundColor\": \"#EBFDF2\",\r\n    \"color\": \"#43B658\",\r\n    \"description\": \"Курсовая\",\r\n    \"title\": \"   \",\r\n    \"startAt\": \"2023-06-15T11:00:00+03:00\",\r\n    \"endAt\": \"2023-06-15T11:30:00+03:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}createPersonal",
+							"host": [
+								"{{baseUrl}}createPersonal"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Удаление события",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "token_global={{token_global}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": {{PersonalId}},\r\n    \"startAt\": \"{{startAt}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}removePersonal",
+							"host": [
+								"{{baseUrl}}removePersonal"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "https://api-teachers.skyeng.ru/v2/schedule/",
+			"type": "string"
+		},
+		{
+			"key": "token_global",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "PersonalId",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "startAt",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "PersonalId2",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "startAt2",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
